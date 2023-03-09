@@ -15,6 +15,10 @@ def get_about_message():
             > * Clears n amout of messages from the current channel. Default is 100.
             * *Admin only.*
 
+            > **!silent_clean** *
+            > * Clears the last 100 messages from the channel without returning anything.
+            * *Admin only.*
+
             *I can't do much right now, but I hope you'll support me as I grow!!*
         """
     )

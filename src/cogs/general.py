@@ -19,6 +19,11 @@ class General(commands.Cog):
         message_to_send = general_messages.get_clean_message(limit, removed)
         await ctx.send(message_to_send)
 
+    @commands.command()
+    @commands.has_permissions(administrator=True)
+    async def silent_clean(self, ctx):
+        await ctx.channel.purge()
+
     def validate_clean_content(self, content):
         user_input = content[7:]
         return int(user_input) if user_input.isdigit() else 100
