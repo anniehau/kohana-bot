@@ -1,5 +1,5 @@
-import textwrap
 from discord.ext import commands
+from src.messages import general_messages
 
 
 class General(commands.Cog):
@@ -9,21 +9,7 @@ class General(commands.Cog):
     @commands.command()
     async def about(self, ctx):
         bot_creator_id = "298249837965606912"
-        message_to_send = textwrap.dedent(
-            f"""\
-                **I'm a discord bot made by <@{bot_creator_id}>!**
-
-                :notebook: **My available commands are:**
-                > **!about**
-                > * Tells you more about myself and my commands.
-
-                > **!clean n** *
-                > * Clears n amout of messages from the current channel. Default is 100.
-                * *Admin only.*
-
-                *I can't do much right now, but I hope you'll support me as I grow!!*
-            """
-        )
+        message_to_send = general_messages.get_about_message()
         await ctx.send(message_to_send)
 
     @commands.command()
@@ -33,11 +19,5 @@ class General(commands.Cog):
         limit = int(user_input) if user_input.isdigit() else 100
         removed = await ctx.channel.purge(limit=limit)
 
-        message_to_send = textwrap.dedent(
-            f"""\
-                *Channel cleaned, it's now all new and shiny!* :broom:
-                > A total of **{len(removed)}** messages were removed.
-                > Message clean limit was **{limit if limit != 100 else f"default ({limit})"}**.
-            """
-        )
+        message_to_send = general_messages.get_clean_message(limit, removed)
         await ctx.send(message_to_send)
