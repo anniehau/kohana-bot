@@ -11,5 +11,4 @@ class ErrorHandler(commands.Cog):
         if isinstance(error, commands.CommandNotFound):
             message_to_send = error_messages.get_unknown_command_message()
             return await ctx.send(message_to_send)
-
         print(error)

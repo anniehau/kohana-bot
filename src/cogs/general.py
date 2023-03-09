@@ -8,16 +8,17 @@ class General(commands.Cog):
 
     @commands.command()
     async def about(self, ctx):
-        bot_creator_id = "298249837965606912"
         message_to_send = general_messages.get_about_message()
         await ctx.send(message_to_send)
 
     @commands.command()
     @commands.has_permissions(administrator=True)
     async def clean(self, ctx):
-        user_input = ctx.message.content[7:]
-        limit = int(user_input) if user_input.isdigit() else 100
+        limit = self.validate_clean_content(ctx.message.content)
         removed = await ctx.channel.purge(limit=limit)
-
         message_to_send = general_messages.get_clean_message(limit, removed)
         await ctx.send(message_to_send)
+
+    def validate_clean_content(self, content):
+        user_input = content[7:]
+        return int(user_input) if user_input.isdigit() else 100
