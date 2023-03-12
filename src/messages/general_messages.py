@@ -19,8 +19,7 @@ def get_about_message():
             > * Clears the last 100 messages from the channel without returning anything.
             * *Admin only.*
 
-            *I can't do much right now, but I hope you'll support me as I grow!!*
-        """
+            *I can't do much right now, but I hope you'll support me as I grow!!*"""
     )
 
 
@@ -29,6 +28,13 @@ def get_clean_message(limit, removed):
         f"""\
             *Channel cleaned, it's now all new and shiny!* :broom:
             > A total of **{len(removed)}** messages were removed.
-            > Message clean limit was **{limit if limit != 100 else f"default ({limit})"}**.
-        """
+            > Message clean limit was **{limit if limit != 100 else f"default ({limit})"}**."""
+    )
+
+
+def get_roles_message():
+    return textwrap.dedent(
+        """\
+            :art: **Here you can click one of the reactions below to get a color to appear on your name!**
+            *The currently available colors are:*"""
     )

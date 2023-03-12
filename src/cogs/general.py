@@ -27,3 +27,8 @@ class General(commands.Cog):
     def validate_clean_content(self, content):
         user_input = content[7:]
         return int(user_input) if user_input.isdigit() else 100
+
+    @commands.command()
+    @commands.is_owner()
+    async def shutdown(self, ctx):
+        exit()

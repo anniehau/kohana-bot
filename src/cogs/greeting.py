@@ -8,5 +8,5 @@ class Greeting(commands.Cog):
 
     @commands.Cog.listener()
     async def on_member_join(self, member):
-        role = get(member.server.roles, name="🐈")
-        member.add_roles(member, role)
+        role = get(member.guild.roles, id=1055657900632186940)
+        await member.add_roles(role)
